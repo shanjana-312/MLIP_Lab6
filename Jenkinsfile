@@ -9,10 +9,9 @@ pipeline {
         stage('Set Up Conda Environment') {
             steps {
                 bat '''
-                call "%CONDA%/Scripts/activate.bat"
-                call "%CONDA%/condabin/conda.bat" create -n mlip python=3.10 -y -c conda-forge
-                call "%CONDA%/condabin/conda.bat" activate mlip
-                pip install numpy pandas scikit-learn pytest
+                call "C:/Users/Public/Miniconda3/Scripts/activate.bat"
+                call C:/Users/Public/Miniconda3/condabin/conda.bat create -n mlip python=3.10 -y -c conda-forge
+                call C:/Users/Public/Miniconda3/condabin/conda.bat install -n mlip numpy pandas scikit-learn pytest -y
                 '''
             }
         }
@@ -28,5 +27,6 @@ pipeline {
                 '''
             }
         }
+
     }
 }
