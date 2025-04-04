@@ -20,8 +20,9 @@ pipeline {
         stage('Run Tests') {
             steps {
                 bat '''
-                call "%CONDA%/Scripts/activate.bat"
-                call "%CONDA%/condabin/conda.bat" activate mlip
+                call "C:/Users/Public/Miniconda3/Scripts/activate.bat"
+                call C:/Users/Public/Miniconda3/condabin/conda.bat activate mlip
+                set PYTHONPATH=.
                 cd "%WORKSPACE%"
                 pytest
                 '''
