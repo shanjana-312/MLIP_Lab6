@@ -9,7 +9,9 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git credentialsId: 'github-token', url: 'https://github.com/shanjana-312/MLIP_Lab6.git'
+            git branch: 'main',
+            credentialsId: 'github-token',
+            url: 'https://github.com/shanjana-312/MLIP_Lab6.git'
             }
         }
 
