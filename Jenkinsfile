@@ -23,7 +23,9 @@ pipeline {
             call "C:/Users/Public/Miniconda3/condabin/conda.bat" activate mlip
             cd "%WORKSPACE%"
             set PYTHONPATH=%CD%
-            pytest
+            echo PYTHONPATH is set to: %PYTHONPATH%
+            python -c "import utility; print('✅ utility.py is visible')"
+            python -m pytest
             '''
             }
         }
