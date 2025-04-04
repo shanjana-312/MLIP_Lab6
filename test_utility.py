@@ -2,6 +2,7 @@ import pytest
 import pandas as pd
 import numpy as np
 from prediction_demo import data_preparation,data_split,train_model,eval_model
+from utility import data_split
 
 @pytest.fixture
 def housing_data_sample():
@@ -35,7 +36,21 @@ def feature_target_sample(housing_data_sample):
     feature_df, target_series = data_preparation(housing_data_sample)
     return (feature_df, target_series)
 
-def test_data_split(feature_target_sample):
-    return_tuple = data_split(*feature_target_sample)
-    # TODO test if the length of return_tuple is 4
-    raise NotImplemented
+from test_utility import housing_data_sample
+
+def test_data_split(housing_data_sample):
+    df = housing_data_sample
+
+    X_train, X_test, y_train, y_test = data_split(df)
+
+    assert len(X_train) == 1
+    assert len(X_test) == 1
+    assert len(y_train) == 1
+    assert len(y_test) == 1
+
+    expected_features = [
+        'area', 'bedrooms', 'bathrooms', 'stories', 'mainroad',
+        'guestroom', 'basement', 'hotwaterheating', 'airconditioning',
+        'parking', 'prefarea', 'furnishingstatus'
+    ]
+    assert all(col in X_train.columns for col in expected_features)
